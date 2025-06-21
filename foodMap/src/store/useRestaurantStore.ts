@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export interface restaurantType {
+export interface RestaurantType {
   ADDR: string;
   LAT: string;
   LOT: string;
@@ -13,16 +13,22 @@ export interface restaurantType {
   REST_ID: string;
 }
 
-export interface useRestaurantStoreType {
-  restaurantsData: restaurantType[];
-  setRestaurantsData: (data : restaurantType[]) => void;
+export interface StoreStateType {
+  restaurantsData: RestaurantType[];
+  selectedRestaurant: string;
+}
+
+interface StoreActionType{
+  setRestaurantsData: (data: RestaurantType[]) => void;
+  setSelectedRestaurant: (name: string) => void;
 }
 
 
-const useRestaurantStore = create<useRestaurantStoreType>((set) => ({
-  restaurantsData : [],
-  setRestaurantsData : (data : restaurantType[] ) => set((state)=> ({restaurantsData : [...state.restaurantsData , ...data]})),
-  
+const useRestaurantStore = create<StoreStateType & StoreActionType>((set) => ({
+  restaurantsData: [],
+  selectedRestaurant: "",
+  setRestaurantsData : (data) => set({restaurantsData: data}),
+  setSelectedRestaurant: (name) => set({ selectedRestaurant: name }),
 })) 
 
 

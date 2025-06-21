@@ -3,7 +3,7 @@ import MapContainer from "./kakaoMap/KakaoMap"
 import { fetchData } from "./API/ restaurant";
 import useRestaurantStore from "./store/useRestaurantStore";
 
-// interface restaurantType {
+// interface RestaurantType {
 //   ADDR: string;
 //   LAT: string;
 //   LOT: string;
@@ -12,18 +12,22 @@ import useRestaurantStore from "./store/useRestaurantStore";
 //   OPEN_HR_INFO: string;
 //   REST_NM: string;
 //   TELNO: string;
-//   TOB_INFP: string;
+//   TOB_INFO: string;
 // }
 
 
 function App() {
-  const { restaurantsData, setRestaurantsData } = useRestaurantStore();
+  const { restaurantsData, selectedRestaurant, setRestaurantsData, setSelectedRestaurant } = useRestaurantStore();
 
   const [page, setPage] = useState<number>(1);
-  //const [restaurantData, setRestaurantData] = useState<restaurantType[] | []>([])
+  //const [selectedRestaurant, setSelectedRestaurant] = useState<string>('');
 
   const handleClickPageUp = () => {
     setPage(page + 1);
+  }
+
+  const handleClickRestaurant = (restaurantName: string) => {
+    setSelectedRestaurant(restaurantName);
   }
 
 
@@ -38,6 +42,7 @@ function App() {
   }, [page]);
 
 
+
   return (
     <div className='w-100% h-100%'>
       <header className='mb-20 justify-self-center m-10 text-3xl'>
@@ -46,13 +51,14 @@ function App() {
       <button className="bg-gray-300 rounded-lg p-2 border border-gray-400 active:bg-gray-400"
         onClick={handleClickPageUp}>page up</button>
       <section className='flex gap-40'>
-        <div className="w-130 flex flex-col gap-2 h-160 overflow-scroll border p-5">
+        <div className="w-130 flex flex-col gap-2 h-162 overflow-scroll border p-5 shadow-xl">
           {restaurantsData.map((restaurant) => (
-            <div key={restaurant.REST_ID}>
-              <div>{restaurant.REST_NM} ///// {restaurant.TOB_INFO}</div>
+            <div key={restaurant.REST_ID}
+              className="border border-gray-400 border-2 p-2 cursor-pointer hover:bg-neutral-200 active:bg-neutral-300 rounded-lg shadow-lg"
+              onClick={() => handleClickRestaurant(restaurant.REST_NM)}
+            >
+              <div className="justify-self-center">{restaurant.REST_NM} ({restaurant.TOB_INFO})</div>
             </div>
-
-
           ))}
         </div>
         <MapContainer />
@@ -62,4 +68,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

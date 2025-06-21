@@ -10,4 +10,5 @@ export const fetchData = async (page: number) => {
       return [];
     }
   
-  };
+};
+  
