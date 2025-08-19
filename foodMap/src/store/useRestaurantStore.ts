@@ -11,24 +11,28 @@ export interface RestaurantType {
   TELNO: string;
   TOB_INFO: string;
   REST_ID: string;
+  SD_URL: string;
 }
 
 export interface StoreStateType {
   restaurantsData: RestaurantType[];
-  selectedRestaurant: string;
+  selectedRestaurant: RestaurantType | null;
+
 }
 
 interface StoreActionType{
   setRestaurantsData: (data: RestaurantType[]) => void;
-  setSelectedRestaurant: (name: string) => void;
-}
+  setSelectedRestaurant: (restaurantData: RestaurantType | null) => void;
+  clearSelectedRestaurant: () => void;
 
+}
 
 const useRestaurantStore = create<StoreStateType & StoreActionType>((set) => ({
   restaurantsData: [],
-  selectedRestaurant: "",
+  selectedRestaurant: null,
   setRestaurantsData : (data) => set({restaurantsData: data}),
-  setSelectedRestaurant: (name) => set({ selectedRestaurant: name }),
+  setSelectedRestaurant: (restaurantData) => set({ selectedRestaurant: restaurantData }),
+  clearSelectedRestaurant: () => set({ selectedRestaurant: null }),
 })) 
 
 
