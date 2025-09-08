@@ -1,0 +1,5 @@
+@layer calendar {
+  .monthButton {
+    @apply text-xl bg-neutral-300 rounded-full cursor-pointer hover:bg-neutral-400 active:scale-90;
+  }
+}

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-html, body, #root {
-  height: 100%;
-  width: 100%;
-}
-
+@import "./App.css";
+@import "./styles/mainpage.css";
+@import "./styles/calendar.css";
+@import "./styles/football.css";
+@import "./styles/pagination.css";

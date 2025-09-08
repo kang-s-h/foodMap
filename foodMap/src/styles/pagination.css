@@ -1,0 +1,5 @@
+@layer {
+  .pageMoveButton {
+    @apply rounded-full hover:bg-neutral-300 p-1
+  }
+}

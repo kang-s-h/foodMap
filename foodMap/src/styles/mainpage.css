@@ -1,0 +1,5 @@
+@layer mainpage {
+  .button {
+    @apply bg-neutral-300 p-5 text-white text-2xl font-bold rounded-lg hover:bg-neutral-400 active:scale-90 transition;
+  }
+}

@@ -1,0 +1,9 @@
+@layer football {
+  .selectBtn {
+    @apply p-2 ml-10 bg-neutral-300 text-2xl font-bold w-30 justify-center rounded-lg border border-gray-400 shadow-lg hover:bg-neutral-400 cursor-pointer text-center active:scale-90
+  }
+
+  .label{
+    @apply peer-checked:font-bold peer-checked:text-xl peer-checked:bg-yellow-100 rounded-lg p-1 cursor-pointer p-5
+  }
+} 
