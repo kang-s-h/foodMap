@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { useKakaoMapStore } from '../store/useKakaoMapStore';
-import useRestaurantStore from '../store/useRestaurantStore';
-import type { RestaurantType } from '../store/useRestaurantStore';
+import type { Restaurant } from '@/API/foodData/entity';
+import { useKakaoMapStore } from '@/store/useKakaoMapStore';
+import useRestaurantStore from '@/store/useRestaurantStore';
 
 interface MarkersProps {
   map: kakao.maps.Map | null;
-  restaurants: RestaurantType[];
+  restaurants: Restaurant[];
 }
 
 function useMarker({ map, restaurants }: MarkersProps) {
@@ -13,7 +13,6 @@ function useMarker({ map, restaurants }: MarkersProps) {
   const { setSelectedRestaurant } = useRestaurantStore();
 
   useEffect(() => {
-
     if (!map || restaurants.length === 0) return;
 
     markers.forEach((marker) => marker.setMap(null));
@@ -22,7 +21,7 @@ function useMarker({ map, restaurants }: MarkersProps) {
     restaurants.forEach((restaurant) => {
       const markerPosition = new kakao.maps.LatLng(
         Number(restaurant.LAT),
-        Number(restaurant.LOT)
+        Number(restaurant.LOT),
       );
 
       const marker = new kakao.maps.Marker({
@@ -31,15 +30,15 @@ function useMarker({ map, restaurants }: MarkersProps) {
 
       kakao.maps.event.addListener(marker, 'click', () => {
         setSelectedRestaurant(restaurant);
-        
+
         const markerPosition = new kakao.maps.LatLng(
           Number(restaurant.LAT),
-          Number(restaurant.LOT)
+          Number(restaurant.LOT),
         );
 
         map.panTo(markerPosition);
       });
-      
+
       marker.setMap(map);
       addMarker(marker);
     });
@@ -48,7 +47,6 @@ function useMarker({ map, restaurants }: MarkersProps) {
       markers.forEach((marker) => marker.setMap(null));
       clearMarkers();
     };
-
   }, [map, restaurants]);
 }
 

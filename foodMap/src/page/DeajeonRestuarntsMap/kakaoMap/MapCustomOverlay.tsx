@@ -19,14 +19,13 @@ function MapCustomOverlay({ map, position, children }: MapCustomOverlayProps) {
   const [overlay, setOverlay] = useState<kakao.maps.CustomOverlay>();
 
   useEffect(() => {
-
     if (!map || !position) return;
 
     const customOverlay = new kakao.maps.CustomOverlay({
       position: position,
       content: container,
       map: map,
-      yAnchor: 1.5,
+      yAnchor: 1.3,
     });
     setOverlay(customOverlay);
 
@@ -36,10 +35,9 @@ function MapCustomOverlay({ map, position, children }: MapCustomOverlayProps) {
   }, [map, container, position]);
 
   useEffect(() => {
-
     if (!overlay || !position) return;
 
-    overlay?.setPosition(position);
+    overlay.setPosition(position);
   }, [overlay, position]);
 
   return ReactDOM.createPortal(children, container);
