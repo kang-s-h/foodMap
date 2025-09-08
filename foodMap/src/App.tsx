@@ -7,7 +7,6 @@ import weekOfYear from 'dayjs/plugin/weekOfYear';
 import { Routes, Route } from 'react-router';
 import LoadingSpinner from './components/LoadingSpinner';
 import Pagination from './page/DeajeonRestuarntsMap/components/Pagination';
-import Error from './page/error';
 import MainPage from '@/page';
 import DeajeonRestuarntsMap from '@/page/DeajeonRestuarntsMap';
 import Football from '@/page/Football/intdex';
@@ -36,9 +35,7 @@ function App() {
         <Route path="/football" element={<Football />}>
           축구일정
         </Route>
-        <Route path="*" element={<Error />}>
-          없는 페이지
-        </Route>
+        <Route path="*">없는 페이지</Route>
         <Route path="/pagination" element={<Pagination />}>
           페이지네이션
         </Route>
