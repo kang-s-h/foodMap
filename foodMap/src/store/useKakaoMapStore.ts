@@ -1,4 +1,4 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 type marker = kakao.maps.Marker;
 
@@ -8,14 +8,15 @@ interface KakaoMapStoreType {
   clearMarkers: () => void;
 }
 
-export const useKakaoMapStore = create<KakaoMapStoreType>((set,get) => ({
+export const useKakaoMapStore = create<KakaoMapStoreType>((set, get) => ({
   markers: [],
-  addMarker: (marker : marker)=> set((state) => ({
-    markers: [...state.markers, marker],
-  })),
-  clearMarkers: () => { 
+  addMarker: (marker: marker) =>
+    set((state) => ({
+      markers: [...state.markers, marker],
+    })),
+  clearMarkers: () => {
     const { markers } = get();
     markers.map((m) => m.setMap(null));
     set({ markers: [] });
   },
-}))
+}));
