@@ -1,14 +1,8 @@
-# .github/workflows/visual-test.yml
 name: Visual Test
 on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ./foodMap
-    
     
     steps:
       - uses: actions/checkout@v3
@@ -40,7 +34,7 @@ jobs:
         run: npm start &
       
       - name: Wait for app
-        run: npx wait-on http://localhost:3000
+        run: npx wait-on http://localhost:5174
       
       - name: Run test
         run: npx playwright test
